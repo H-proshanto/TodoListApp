@@ -1,10 +1,20 @@
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
-import { Button } from "react-native-paper";
+import {
+  View,
+  TouchableWithoutFeedback,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 
-export const TodoView = ({ task, status }) => {
+export const TodoView = ({ task, status, id, onCompleteTask, destroyTask }) => {
   return (
     <View style={styles.todoConatainer}>
-      <TouchableOpacity style={styles.touchablebutton}>
+      <TouchableOpacity
+        style={styles.touchablebutton}
+        onPress={() => {
+          onCompleteTask(id);
+        }}
+      >
         <Text
           style={
             status === "done"
@@ -18,25 +28,18 @@ export const TodoView = ({ task, status }) => {
           {task}
         </Text>
       </TouchableOpacity>
-      <Button
-        icon="application-edit"
-        mode="contained"
-        color="white"
-        style={styles.buttonContainer}
-      />
-      <Button
-        icon="close"
-        mode="contained"
-        color="white"
-        style={styles.buttonContainer}
-      />
+      <TouchableWithoutFeedback onPress={() => destroyTask(id)}>
+        <View style={styles.buttonContainer}>
+          <Text style={styles.buttonText}>X</Text>
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   touchablebutton: {
-    flex: 0.9,
+    flex: 0.8,
     backgroundColor: "orange",
     borderRadius: 8,
     padding: 10,
@@ -47,6 +50,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   buttonContainer: {
-    flexDirection: "column-reverse",
+    backgroundColor: "#03396c",
+    paddingLeft: 13,
+    paddingRight: 13,
+    paddingTop: 3,
+    paddingBottom: 3,
+    borderRadius: 20,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 5,
   },
 });

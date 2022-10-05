@@ -8,15 +8,34 @@ export default function App() {
   const [currentTask, setCurrentTask] = useState({});
   const [tasks, setTasks] = useState([]);
 
+  const onCompleteTask = (id) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id == id) task.status = "done";
+      return task;
+    });
+    setTasks(newTasks);
+  };
+
+  const destroyTask = (id) => {
+    const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
+  };
+
   useEffect(() => {
-    if (Object.keys(currentTask).length !== 0)
+    if (Object.keys(currentTask).length !== 0) {
+      currentTask.id = tasks.length;
       setTasks([...tasks, currentTask]);
+    }
   }, [currentTask]);
 
   return (
     <SafeAreaView style={styles.container}>
       <TodoForm addTask={setCurrentTask} />
-      <TodoList list={tasks} />
+      <TodoList
+        list={tasks}
+        onCompleteTask={onCompleteTask}
+        destroyTask={destroyTask}
+      />
       <ExpoStatusBar style="auto" />
     </SafeAreaView>
   );

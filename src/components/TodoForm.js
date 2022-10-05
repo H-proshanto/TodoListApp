@@ -20,8 +20,10 @@ export const TodoForm = ({ addTask }) => {
           title="+"
           size={50}
           onPress={() => {
-            setInput("");
-            addTask({ task: input, status: "pending" });
+            if (input !== "") {
+              setInput("");
+              addTask({ task: input, status: "pending" });
+            }
           }}
         />
       </View>
