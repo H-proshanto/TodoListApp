@@ -2,6 +2,7 @@
   "expo": {
     "name": "TodoList",
     "slug": "TodoList",
+    "description": "This is todo application for android and ios for day to day task tracking. Made with React Native.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
