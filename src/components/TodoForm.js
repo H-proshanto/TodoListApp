@@ -5,11 +5,17 @@ import { RoundedButton } from "./RoundedButton";
 
 export const TodoForm = ({ addTask }) => {
   const [input, setInput] = useState("");
-
+  const onSubmit = () => {
+    if (input !== "") {
+      setInput("");
+      addTask({ task: input, status: "pending" });
+    }
+  }
   return (
     <View style={styles.inputContainer}>
       <TextInput
         onChangeText={setInput}
+        onSubmitEditing={onSubmit}
         style={styles.textInput}
         label="Add a todo"
         value={input}
@@ -19,12 +25,7 @@ export const TodoForm = ({ addTask }) => {
           style={styles.button}
           title="+"
           size={50}
-          onPress={() => {
-            if (input !== "") {
-              setInput("");
-              addTask({ task: input, status: "pending" });
-            }
-          }}
+          onPress={onSubmit}
         />
       </View>
     </View>

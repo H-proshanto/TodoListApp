@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, Platform, StatusBar } from "react-native";
 import { TodoForm } from "./src/components/TodoForm";
 import { TodoList } from "./src/components/TodoList";
+import { ClearButton } from "./src/components/ClearButton";
 
 export default function App() {
   const [currentTask, setCurrentTask] = useState({});
@@ -36,6 +37,7 @@ export default function App() {
         onCompleteTask={onCompleteTask}
         destroyTask={destroyTask}
       />
+      <ClearButton clearAllTasks={setTasks}/>
       <ExpoStatusBar style="auto" />
     </SafeAreaView>
   );

@@ -21,6 +21,6 @@ export const TodoList = ({ list, onCompleteTask, destroyTask }) => {
 
 const styles = StyleSheet.create({
   listContainer: {
-    flex: 0.7,
+    flex: 0.9,
   },
 });
